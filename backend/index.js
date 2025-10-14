@@ -9,11 +9,14 @@ import cors from "cors";
 import { app,server } from "./socket/socket.js";
 dotenv.config({});
 import path from "path";
+import { fileURLToPath } from "url";
 
  
 const PORT = process.env.PORT || 5000;
 
-const _dirname = path.resolve();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // middleware
 app.use(express.urlencoded({extended:true}));
