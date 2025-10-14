@@ -8,11 +8,12 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { app,server } from "./socket/socket.js";
 dotenv.config({});
+import path from "path";
 
  
 const PORT = process.env.PORT || 5000;
 
-const _dirname = process.resolve();
+const _dirname = path.resolve();
 
 // middleware
 app.use(express.urlencoded({extended:true}));
@@ -29,9 +30,9 @@ app.use(cors(corsOption));
 app.use("/api/v1/user",userRoute); 
 app.use("/api/v1/message",messageRoute);
  
-app.use(express.static(Path.join(_dirname,"./frontend/dist")));
+app.use(express.static(path.join(_dirname,"./frontend/dist")));
 app.get("*",(_,res)=>{
-    res.sendFile(Path.resolve(_dirname,"frontend","dist","index.html"));
+    res.sendFile(path.resolve(_dirname,"frontend","dist","index.html"));
 });
 
 server.listen(PORT, ()=>{
